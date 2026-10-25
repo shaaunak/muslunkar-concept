@@ -1,0 +1,36 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor & IDE Directories
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment Variables & Credentials (Security Precaution)
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.cert
+credentials.json
+token.json
+
+# Temporary Scripts & Bytecode
+scratch/
+__pycache__/
+*.pyc
+
+# Local Backups
+dist_backup_v1/
+
+# Logs
+*.log
