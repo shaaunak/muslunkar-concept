@@ -1,4 +1,4 @@
-/* ==========================================================================
+ /* ==========================================================================
    VM JEWELLERS / V.M. MUSLUNKAR & SONS
    Independent Fine Jewellery Design Direction
    Identity: Deep Bottle Green, Antique Gold, Warm Ivory
@@ -616,7 +616,7 @@ header.scrolled {
    ========================================================================== */
 .cinematic-hero {
   position: relative;
-  min-height: 88vh;
+  min-height: min(88vh, 840px);
   max-height: 860px;
   display: flex;
   align-items: center;
@@ -1367,23 +1367,59 @@ header.scrolled {
 .karigar-craft-card {
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 3px;
-  padding: 18px 22px;
+  border-radius: 6px;
+  padding: 16px 18px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   border-left: 3px solid transparent;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
 }
 
 .karigar-craft-card:hover {
   border-color: var(--gold-500);
   transform: translateX(4px);
+  box-shadow: 0 6px 18px rgba(11, 38, 33, 0.06);
 }
 
 .karigar-craft-card.active {
   border-color: var(--gold-500);
   border-left: 3px solid var(--gold-600);
-  background: var(--paper-50);
-  box-shadow: 0 8px 20px rgba(11, 38, 33, 0.06);
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(184, 134, 11, 0.12);
+}
+
+.karigar-card-macro-thumb {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(184, 134, 11, 0.35);
+  background: #031713;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.karigar-card-macro-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.karigar-craft-card:hover .karigar-card-macro-thumb img,
+.karigar-craft-card.active .karigar-card-macro-thumb img {
+  transform: scale(1.08);
+}
+
+.karigar-craft-card.active .karigar-card-macro-thumb {
+  border-color: var(--gold-500);
+  box-shadow: 0 0 0 1px var(--gold-500);
+}
+
+.karigar-card-content {
+  flex: 1;
 }
 
 .karigar-card-head {
@@ -1411,7 +1447,7 @@ header.scrolled {
 }
 
 .karigar-card-head h4 {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--green-950);
 }
 
@@ -1419,6 +1455,7 @@ header.scrolled {
   font-size: 0.8125rem;
   color: var(--ink-600);
   line-height: 1.55;
+  margin: 0;
 }
 
 /* ==========================================================================
@@ -1484,16 +1521,16 @@ header.scrolled {
    CUSTOMER EXPERIENCES ("Words from our customers")
    ========================================================================== */
 .customer-words-section {
-  background: var(--paper-200);
+  background: var(--paper-100);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding: 95px 5%;
+  padding: 85px 5%;
 }
 
 .customer-words-head {
   text-align: center;
   max-width: 680px;
-  margin: 0 auto 45px;
+  margin: 0 auto 40px;
 }
 
 .gold-divider-centered {
@@ -1506,25 +1543,43 @@ header.scrolled {
 .customer-reviews-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 24px;
   max-width: var(--max-width);
   margin: 0 auto;
 }
 
 .customer-review-card {
-  background: #fff;
-  border: 1px solid var(--line);
-  padding: 34px 28px;
-  border-radius: 3px;
+  background: #ffffff !important;
+  border: 1px solid rgba(184, 134, 11, 0.24);
+  padding: 32px 28px 24px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 4px 14px rgba(11, 38, 33, 0.04);
+  box-shadow: 0 4px 18px rgba(11, 38, 33, 0.04);
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.customer-review-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-500);
+  box-shadow: 0 12px 28px rgba(11, 38, 33, 0.08);
+}
+
+.customer-quote-mark {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1;
+  color: var(--gold-500);
+  opacity: 0.65;
+  margin-bottom: 6px;
+  user-select: none;
 }
 
 .customer-quote {
   font-family: var(--serif);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-style: italic;
   line-height: 1.6;
   color: var(--green-950);
@@ -1535,25 +1590,27 @@ header.scrolled {
   display: flex;
   flex-direction: column;
   padding-top: 14px;
-  border-top: 1px solid var(--line-subtle);
+  border-top: 1px solid rgba(184, 134, 11, 0.16);
+  background: transparent !important;
 }
 
 .customer-name {
   font-size: 0.8125rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--gold-700);
+  letter-spacing: 0.05em;
+  color: var(--green-950);
 }
 
 .customer-source {
   font-size: 0.6875rem;
-  color: var(--ink-400);
-  margin-top: 2px;
+  color: var(--gold-700);
+  margin-top: 3px;
+  letter-spacing: 0.02em;
 }
 
 .customer-words-foot {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 36px;
 }
 
 /* ==========================================================================
@@ -1578,18 +1635,24 @@ header.scrolled {
 }
 
 .showroom-photo-main {
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(184, 134, 11, 0.28);
   position: relative;
   box-shadow: 0 12px 28px rgba(11, 38, 33, 0.08);
 }
 
 .showroom-photo-main img {
   width: 100%;
-  height: 340px;
-  max-height: 340px;
+  height: 290px;
+  max-height: 290px;
   object-fit: cover;
+  object-position: center 30%;
+  transition: transform 0.6s ease;
+}
+
+.showroom-photo-main:hover img {
+  transform: scale(1.02);
 }
 
 .showroom-photo-caption {
@@ -1598,33 +1661,44 @@ header.scrolled {
   left: 0;
   right: 0;
   padding: 10px 16px;
-  background: rgba(5, 26, 22, 0.9);
-  color: rgba(253, 250, 242, 0.9);
+  background: rgba(5, 26, 22, 0.92);
+  color: rgba(253, 250, 242, 0.92);
   font-size: 0.6875rem;
   letter-spacing: 0.04em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .showroom-photo-sub {
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(184, 134, 11, 0.28);
   position: relative;
+  box-shadow: 0 8px 20px rgba(11, 38, 33, 0.06);
 }
 
 .showroom-photo-sub img {
   width: 100%;
-  height: 180px;
-  max-height: 180px;
+  height: 200px;
+  max-height: 200px;
   object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.showroom-photo-sub:hover img {
+  transform: scale(1.02);
 }
 
 .showroom-address-card {
   background: #fff;
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--gold-500);
-  padding: 22px;
-  border-radius: 2px;
+  border: 1px solid rgba(184, 134, 11, 0.24);
+  border-left: 3px solid var(--gold-600);
+  padding: 22px 24px;
+  border-radius: 4px;
   margin: 20px 0;
+  box-shadow: 0 4px 14px rgba(11, 38, 33, 0.03);
 }
 
 .showroom-address-card strong {
@@ -1648,7 +1722,36 @@ header.scrolled {
 }
 
 .showroom-details-list {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+}
+
+.showroom-welcome-callout {
+  background: #fbf9f4;
+  border: 1px solid rgba(184, 134, 11, 0.26);
+  border-left: 3px solid var(--gold-600);
+  border-radius: 4px;
+  padding: 14px 18px;
+  margin-bottom: 22px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.showroom-welcome-callout .callout-icon {
+  color: var(--gold-600);
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.showroom-welcome-callout p {
+  font-size: 0.8125rem;
+  color: var(--ink-700);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.showroom-welcome-callout strong {
+  color: var(--green-950);
 }
 
 .showroom-detail-item {
@@ -2615,7 +2718,8 @@ dialog.image-dialog img {
 /* ==========================================================================
    CONCISE FOOTER
    ========================================================================== */
-footer {
+body > footer,
+.site-footer {
   background: var(--green-950);
   color: var(--paper-100);
   border-top: 1px solid rgba(195, 161, 91, 0.25);
@@ -2676,10 +2780,35 @@ footer {
   font-size: 0.8125rem;
   color: rgba(253, 250, 242, 0.8);
   line-height: 1.65;
+  margin-bottom: 12px;
 }
 
 .footer-landmark {
   color: var(--gold-400);
+  font-size: 0.75rem;
+}
+
+.footer-hours {
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: rgba(253, 250, 242, 0.85);
+  margin-bottom: 14px;
+  padding-left: 10px;
+  border-left: 2px solid var(--gold-500);
+}
+
+.footer-hours-label {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold-400);
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+.footer-closed {
+  color: #fca5a5;
   font-size: 0.75rem;
 }
 
@@ -2720,6 +2849,29 @@ footer {
   color: var(--gold-400);
   font-size: 0.6875rem;
   text-decoration: underline;
+}
+
+/* ==========================================================================
+   SCROLL REVEALS & PERFORMANCE ANIMATIONS
+   ========================================================================== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* ==========================================================================
@@ -2837,16 +2989,45 @@ footer {
 @media (max-width: 768px) {
   .cinematic-hero {
     min-height: auto;
-    padding: 60px 5% 50px;
+    padding: 55px 5% 45px;
   }
   .hero-scrim {
     background: linear-gradient(180deg, 
-      rgba(3, 23, 19, 0.82) 0%, 
-      rgba(3, 23, 19, 0.94) 85%
+      rgba(3, 23, 19, 0.84) 0%, 
+      rgba(3, 23, 19, 0.94) 80%,
+      rgba(3, 23, 19, 0.98) 100%
     );
   }
   .hero-title {
-    font-size: 2.45rem;
+    font-size: 2.15rem;
+    line-height: 1.16;
+  }
+  .hero-subtitle {
+    font-size: 0.9375rem;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .hero-cta-group .button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .hero-provenance-row {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 18px;
+  }
+  .hero-provenance-row .prov-divider {
+    display: none;
+  }
+  .hero-provenance-row .prov-item {
+    flex: 1 1 calc(50% - 10px);
+  }
+  .hero-scroll-indicator {
+    display: none;
   }
   .showcase-grid-4 {
     grid-template-columns: 1fr;

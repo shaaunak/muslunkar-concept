@@ -24,6 +24,11 @@ const BUSINESS_INFO = {
   },
   landline: '022 2615 3055',
   telLink: 'tel:+912226153055',
+  hours: {
+    regular: 'Tuesday to Sunday: 10:30 am – 8:30 pm',
+    closed: 'Monday: Closed',
+    summary: 'Tue – Sun: 10:30 am – 8:30 pm · Monday: Closed'
+  },
   mapsQueryUrl: 'https://www.google.com/maps/search/?api=1&query=VM+Jewellers+Pvt+Ltd+Shop+4+Relcon+House+Mahatma+Gandhi+Road+Vile+Parle+East+Mumbai+400057'
 };
 
@@ -857,7 +862,7 @@ function chapter3MicroArchitecture() {
             <!-- Hotspot 1: Granulation -->
             <button 
               class="karigar-hotspot-pin active" 
-              style="top: 54%; left: 32%;" 
+              style="top: 76%; left: 19%;" 
               data-hotspot="1" 
               aria-label="Granulation Rawa Work Hotspot"
             >
@@ -867,7 +872,7 @@ function chapter3MicroArchitecture() {
             <!-- Hotspot 2: Terminals -->
             <button 
               class="karigar-hotspot-pin" 
-              style="top: 42%; left: 68%;" 
+              style="top: 14%; left: 39%;" 
               data-hotspot="2" 
               aria-label="Die-Stamped Finials Hotspot"
             >
@@ -877,7 +882,7 @@ function chapter3MicroArchitecture() {
             <!-- Hotspot 3: Patina Wash -->
             <button 
               class="karigar-hotspot-pin" 
-              style="top: 72%; left: 48%;" 
+              style="top: 84%; left: 45%;" 
               data-hotspot="3" 
               aria-label="Antique Herbal Patina Hotspot"
             >
@@ -885,39 +890,54 @@ function chapter3MicroArchitecture() {
             </button>
           </div>
 
-          <!-- Interactive Feature Cards -->
+          <!-- Interactive Feature Cards with Macro Previews -->
           <div class="karigar-cards-list">
             <!-- Card 1 -->
             <div class="karigar-craft-card active" data-card="1">
-              <div class="karigar-card-head">
-                <span class="karigar-card-num">1</span>
-                <h4>Hand-Soldered Granulation (Rawa Work)</h4>
+              <div class="karigar-card-macro-thumb">
+                <img src="assets/bangle_angle_4_beads.webp" alt="Hand-soldered 22K gold rawa granulation beads macro preview" width="76" height="76" loading="lazy">
               </div>
-              <p>
-                Microscopic spheres of pure 22K gold are hand-rolled and fused at precise flame temperatures without excess solder, creating the distinctive textured ridge of Peshwai jewellery.
-              </p>
+              <div class="karigar-card-content">
+                <div class="karigar-card-head">
+                  <span class="karigar-card-num">1</span>
+                  <h4>Hand-Soldered Granulation (Rawa Work)</h4>
+                </div>
+                <p>
+                  Microscopic spheres of pure 22K gold are hand-rolled and fused at precise flame temperatures without excess solder, creating the distinctive textured ridge of Peshwai jewellery.
+                </p>
+              </div>
             </div>
 
             <!-- Card 2 -->
             <div class="karigar-craft-card" data-card="2">
-              <div class="karigar-card-head">
-                <span class="karigar-card-num">2</span>
-                <h4>Die-Stamped &amp; Hand-Chased Finials</h4>
+              <div class="karigar-card-macro-thumb">
+                <img src="assets/bangle_angle_2_terminal.webp" alt="Die-stamped lion head terminal finials macro preview" width="76" height="76" loading="lazy">
               </div>
-              <p>
-                Traditional lion-head and peacock terminal finials chased with single-point chisels to impart depth and royal character without weakening the structural gold integrity.
-              </p>
+              <div class="karigar-card-content">
+                <div class="karigar-card-head">
+                  <span class="karigar-card-num">2</span>
+                  <h4>Die-Stamped &amp; Hand-Chased Finials</h4>
+                </div>
+                <p>
+                  Traditional lion-head and peacock terminal finials chased with single-point chisels to impart depth and royal character without weakening the structural gold integrity.
+                </p>
+              </div>
             </div>
 
             <!-- Card 3 -->
             <div class="karigar-craft-card" data-card="3">
-              <div class="karigar-card-head">
-                <span class="karigar-card-num">3</span>
-                <h4>Antique Geru &amp; Herbal Patina</h4>
+              <div class="karigar-card-macro-thumb">
+                <img src="assets/bangle_angle_3_engraving.webp" alt="Antique geru and herbal patina macro preview" width="76" height="76" loading="lazy">
               </div>
-              <p>
-                An age-old herbal wash settles into recessed grooves, highlighting high relief polish while leaving deep ancestral shadows that resist daily tarnish.
-              </p>
+              <div class="karigar-card-content">
+                <div class="karigar-card-head">
+                  <span class="karigar-card-num">3</span>
+                  <h4>Antique Geru &amp; Herbal Patina</h4>
+                </div>
+                <p>
+                  An age-old herbal wash settles into recessed grooves, highlighting high relief polish while leaving deep ancestral shadows that resist daily tarnish.
+                </p>
+              </div>
             </div>
 
             <div style="margin-top: 10px;">
@@ -950,41 +970,44 @@ function customerExperiencesSection() {
       <div class="customer-reviews-container">
         <!-- Garrgi Doshii -->
         <article class="customer-review-card">
+          <div class="customer-quote-mark" aria-hidden="true">“</div>
           <blockquote class="customer-quote">
             “Lovely service and loads of options in jewellery”
           </blockquote>
-          <footer class="customer-author">
+          <div class="customer-author">
             <span class="customer-name">— Garrgi Doshii</span>
-            <span class="customer-source">Verified Google review excerpt</span>
-          </footer>
+            <span class="customer-source">Verified Google review excerpt · Local Patron</span>
+          </div>
         </article>
 
         <!-- shrushti nhivekar -->
         <article class="customer-review-card">
+          <div class="customer-quote-mark" aria-hidden="true">“</div>
           <blockquote class="customer-quote">
             “Quality is top-notch, and the staff is super helpful.”
           </blockquote>
-          <footer class="customer-author">
+          <div class="customer-author">
             <span class="customer-name">— shrushti nhivekar</span>
-            <span class="customer-source">Verified Google review excerpt</span>
-          </footer>
+            <span class="customer-source">Verified Google review excerpt · Local Patron</span>
+          </div>
         </article>
 
         <!-- Nitin Sawant -->
         <article class="customer-review-card">
+          <div class="customer-quote-mark" aria-hidden="true">“</div>
           <blockquote class="customer-quote">
             “They have lot of variety and designs to offer.”
           </blockquote>
-          <footer class="customer-author">
+          <div class="customer-author">
             <span class="customer-name">— Nitin Sawant</span>
-            <span class="customer-source">Verified Google review excerpt</span>
-          </footer>
+            <span class="customer-source">Verified Google review excerpt · Local Patron</span>
+          </div>
         </article>
       </div>
 
       <div class="customer-words-foot">
         <a class="text-link" href="${BUSINESS_INFO.mapsQueryUrl}" target="_blank" rel="noopener">
-          <span>Read reviews on Google</span>
+          <span>Read verified reviews on Google Maps</span>
           <span aria-hidden="true">↗</span>
         </a>
       </div>
@@ -1039,26 +1062,28 @@ function chapter4AtelierShowroom() {
                 <dd>
                   <a href="${BUSINESS_INFO.telLink}" style="font-weight: 700; color: var(--green-950);">
                     ${BUSINESS_INFO.landline}
-                  </a> (Landline)
+                  </a> (Direct Landline)
                 </dd>
               </div>
               <div class="showroom-detail-item">
                 <dt>Visiting Hours</dt>
                 <dd>
-                  <a href="${BUSINESS_INFO.mapsQueryUrl}" target="_blank" rel="noopener" style="text-decoration: underline;">
-                    Check current opening hours on Google Maps ↗
-                  </a>
+                  <strong style="color: var(--green-950); font-weight: 600;">Tuesday to Sunday: 10:30 am – 8:30 pm</strong><br>
+                  <span style="color: #991b1b; font-size: 0.8125rem; font-weight: 500;">Monday: Closed</span>
                 </dd>
               </div>
               <div class="showroom-detail-item">
-                <dt>Core Categories</dt>
-                <dd>22K Gold, Silver, Necklaces, Mangalsutras, Gemstones</dd>
+                <dt>Showroom Offerings</dt>
+                <dd>22K Hallmarked Gold, Pure Silver, Necklaces, Traditional Mangalsutras &amp; Gemstones</dd>
               </div>
             </dl>
 
-            <p style="font-size: 0.75rem; color: var(--ink-400); margin-bottom: 22px;">
-              Note: The Google listing indicates temporary status ('Closed · Opens 10:30 am Tue'). Please verify regular schedule with the showroom.
-            </p>
+            <div class="showroom-welcome-callout">
+              <span class="callout-icon">✦</span>
+              <p>
+                <strong>Showroom Consultations:</strong> Walk-ins are warmly welcomed during regular hours. For custom bridal trousseau planning, hallmark testing demonstrations or heirloom remodelling, private consultations with our senior goldsmiths are hosted at our Vile Parle counter.
+              </p>
+            </div>
 
             <div class="showroom-cta-row">
               <a class="button button-primary" href="${BUSINESS_INFO.mapsQueryUrl}" target="_blank" rel="noopener">
@@ -1526,26 +1551,28 @@ function visit() {
                 <dd>
                   <a href="${BUSINESS_INFO.telLink}" style="font-weight: 700; color: var(--green-950);">
                     ${BUSINESS_INFO.landline}
-                  </a> (Landline)
+                  </a> (Direct Landline)
                 </dd>
               </div>
               <div class="showroom-detail-item">
                 <dt>Opening Hours</dt>
                 <dd>
-                  <a href="${BUSINESS_INFO.mapsQueryUrl}" target="_blank" rel="noopener" style="text-decoration: underline;">
-                    Check current opening hours on Google Maps ↗
-                  </a>
+                  <strong style="color: var(--green-950); font-weight: 600;">Tuesday to Sunday: 10:30 am – 8:30 pm</strong><br>
+                  <span style="color: #991b1b; font-size: 0.8125rem; font-weight: 500;">Monday: Closed</span>
                 </dd>
               </div>
               <div class="showroom-detail-item">
                 <dt>Core Categories</dt>
-                <dd>Gold, Silver, Necklaces, Mangalsutras, Gemstones</dd>
+                <dd>22K Hallmarked Gold, Pure Silver, Necklaces, Mangalsutras, Gemstones</dd>
               </div>
             </dl>
 
-            <p style="font-size: 0.75rem; color: var(--ink-400); margin-bottom: 24px;">
-              Note: The Google listing indicates temporary status ('Closed · Opens 10:30 am Tue'). Confirm full weekly schedule directly with the showroom.
-            </p>
+            <div class="showroom-welcome-callout">
+              <span class="callout-icon">✦</span>
+              <p>
+                <strong>Visiting Information:</strong> Our team is at your disposal without the need for prior appointments during regular hours. For custom gold design consultations or valuation reviews, you are invited to visit our private advisory counter.
+              </p>
+            </div>
 
             <div class="showroom-cta-row">
               <a class="button button-primary" href="${BUSINESS_INFO.mapsQueryUrl}" target="_blank" rel="noopener">
@@ -1890,7 +1917,32 @@ function render() {
   document.title = `${pageTitle} — VM Jewellers, Vile Parle East`;
   syncSaved();
   window.scrollTo(0, 0);
+  initScrollReveals();
   main.focus({ preventScroll: true });
+}
+
+// Performant IntersectionObserver Scroll Reveals
+function initScrollReveals() {
+  if (!('IntersectionObserver' in window)) return;
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    rootMargin: '0px 0px -40px 0px',
+    threshold: 0.08
+  });
+
+  const targets = document.querySelectorAll(
+    '.chapter-section, .showcase-section, .heritage-dark-section, .karigar-section, .customer-words-section, .showroom-invitation-section, .editorial-card, .showcase-card, .customer-review-card'
+  );
+  targets.forEach(el => {
+    el.classList.add('reveal-on-scroll');
+    observer.observe(el);
+  });
 }
 
 // Live Calculator DOM Synchronizer

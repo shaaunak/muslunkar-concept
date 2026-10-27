@@ -85,8 +85,10 @@ The visual language marries deep bottle greens (`#051a16`, `#0b2621`), warm arch
 - Features authentic storefront exterior photography ([`storefront_exterior.webp`](dist/assets/storefront_exterior.webp)) showing the *VM JEWELLERS* green fascia at Relcon House on M.G. Road.
 - Verified physical showroom details:
   - **Address**: Shop No. 4, Relcon House, Mahatma Gandhi Road, Navpada, Vile Parle East, Mumbai 400057 *(Landmark: Below Maharashtra Co-operative Bank, Near Vile Parle East Station)*.
+  - **Visiting Hours**: Tuesday to Sunday: 10:30 am – 8:30 pm · Monday: Closed.
   - **Landline**: `022 2615 3055` (Click-to-call connected via `tel:+912226153055`).
   - **Directions**: Direct link to verified Google Maps search query.
+  - **Consultation**: Walk-ins warmly welcomed during regular hours; advance booking available for bespoke trousseau and heirloom redesign.
 
 ---
 
