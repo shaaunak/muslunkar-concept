@@ -1,3 +1,14 @@
+// Helper to synchronize current filters to URL without full page reload
+function syncFiltersToURL() {
+  const params = new URLSearchParams();
+  if (audienceFilter !== 'All') params.set('audience', audienceFilter);
+  if (occasionFilter !== 'All') params.set('occasion', occasionFilter);
+  if (typeFilter !== 'All') params.set('type', typeFilter);
+  if (purityFilter !== 'All') params.set('purity', purityFilter);
+  const qs = params.toString();
+  const newHash = `#/collections${qs ? '?' + qs : ''}`;
+  history.replaceState(null, '', newHash);
+}
 /* ==========================================================================
    VM JEWELLERS / V.M. MUSLUNKAR & SONS
    Independent Fine Jewellery Design Direction · Vile Parle East, Mumbai
@@ -46,6 +57,9 @@ const pieces = [
     name: 'The Royal Peshwai Temple Suite',
     category: 'Necklaces',
     collection: 'Temple Suites',
+    audience: ['Women'],
+    occasions: ['Bridal', 'Temple', 'Traditional'],
+    jewelleryType: 'Necklaces',
     image: 'hero_emerald_jewellery.webp',
     alt: 'Handcrafted 22-karat Maharashtrian gold temple choker suite on emerald green velvet',
     tagline: 'Lakshmi repoussé central pendant, basra pearls and tiered jhumkas.',
@@ -92,6 +106,9 @@ const pieces = [
     name: 'Peshwai Toda & Floral Kangan Pair',
     category: 'Everyday',
     collection: 'Peshwai Toda',
+    audience: ['Women'],
+    occasions: ['Traditional', 'Everyday', 'Diwali'],
+    jewelleryType: 'Bangles',
     image: 'bangle_angle_1_pair.webp',
     alt: 'Matched pair of heavy-gauge 22K gold Peshwai Toda bangles',
     tagline: 'Heavy-gauge gold with rawa granulation and lion-head terminal finials.',
@@ -138,6 +155,9 @@ const pieces = [
     name: 'Kolhapuri Saaj & Wati Mangalsutra',
     category: 'Mangalsutras',
     collection: 'Mangalsutras',
+    audience: ['Women'],
+    occasions: ['Bridal', 'Traditional'],
+    jewelleryType: 'Mangalsutras',
     image: 'ceremony.webp',
     alt: 'Traditional Kolhapuri Saaj and sacred wati mangalsutra',
     tagline: 'Sacred Maharashtrian charms and auspicious wati bowls.',
@@ -173,6 +193,9 @@ const pieces = [
     name: 'Emerald-Tone Geometric Pendant',
     category: 'Gemstones',
     collection: 'Gemstones',
+    audience: ['Women'],
+    occasions: ['Gemstone', 'Summer', 'Everyday'],
+    jewelleryType: 'Pendants',
     image: '1599643477877-530eb83abc8e.webp',
     alt: 'Green geometric emerald-cut pendant on delicate gold chain',
     tagline: 'A vivid green centre framed by clean metallic lines.',
@@ -203,6 +226,9 @@ const pieces = [
     name: 'Sculptural Everyday Gold Hoops',
     category: 'Everyday',
     collection: 'Everyday Gold',
+    audience: ['Women'],
+    occasions: ['Everyday', 'Summer'],
+    jewelleryType: 'Earrings',
     image: '1617038260897-41a1f14a8ca0.webp',
     alt: 'Twisted gold hoop earrings resting on pale stone',
     tagline: 'Gentle curves that catch and reflect everyday light.',
@@ -233,6 +259,9 @@ const pieces = [
     name: 'Layered Chandrakor Crescent Necklace',
     category: 'Necklaces',
     collection: 'Necklaces',
+    audience: ['Women'],
+    occasions: ['Everyday', 'Summer', 'Traditional'],
+    jewelleryType: 'Necklaces',
     image: '1599643478518-a784e5dc4c8f.webp',
     alt: 'Layered necklaces with crescent and geometric pendants',
     tagline: 'An elegant crescent silhouette with cascading chains.',
@@ -263,6 +292,9 @@ const pieces = [
     name: 'Classic Solitaire Halo Ring',
     category: 'Gemstones',
     collection: 'Gemstones',
+    audience: ['Women'],
+    occasions: ['Gifting', 'Everyday', 'Gemstone'],
+    jewelleryType: 'Rings',
     image: '1605100804763-247f67b3557e.webp',
     alt: 'Solitaire ring with brilliant centre stone and micro-halo',
     tagline: 'A luminous centre stone framed by fine micro-settings.',
@@ -295,6 +327,9 @@ const pieces = [
     name: 'Royal Sapphire & Pearl Drops',
     category: 'Gemstones',
     collection: 'Gemstones',
+    audience: ['Women'],
+    occasions: ['Diwali', 'Gemstone', 'Traditional'],
+    jewelleryType: 'Earrings',
     image: '1535632066927-ab7c9ab60908.webp',
     alt: 'Sapphire blue colour drop earrings with floral filigree',
     tagline: 'Royal blue centre accents with floral filigree framing.',
@@ -324,6 +359,9 @@ const pieces = [
     name: 'Grand Peshwai Bridal Choker Suite',
     category: 'Necklaces',
     collection: 'Temple Suites',
+    audience: ['Women'],
+    occasions: ['Bridal', 'Diwali', 'Temple'],
+    jewelleryType: 'Necklaces',
     image: 'bridal.webp',
     alt: 'Grand traditional bridal jewellery set in velvet presentation case',
     tagline: 'A grand assembly of ornamental forms for wedding celebrations.',
@@ -352,6 +390,207 @@ const pieces = [
     ],
     craftsmanship: 'Traditional Kundan Jadau, Chased Nakashi, Pearl Fringe',
     hallmark: '100% BIS 916 Hallmark · Unique HUID Traceable'
+  },
+  {
+    id: 'mens-solid-kada',
+    ref: 'VM-MN-10',
+    name: 'Royal Maratha Chased Gold Kada',
+    category: 'Everyday',
+    collection: 'Everyday Gold',
+    audience: ['Men'],
+    occasions: ['Traditional', 'Everyday', 'Gifting'],
+    jewelleryType: 'Bangles',
+    image: 'bangle_angle_1_pair.webp',
+    alt: 'Solid 22KT gold hand-forged kada bracelet for men',
+    tagline: 'Hand-forged solid 22KT gold kada with chased imperial terminal finials.',
+    description: 'A distinguished heavy-gauge kada bracelet forged in solid 22-karat gold for men. Characterised by masculine geometric chiselling, hand-chased relief, and secure screw-hinged closure.',
+    angles: [
+      {
+        file: 'bangle_angle_1_pair.webp',
+        label: 'Angle 1: Solid Gold Kada Profile',
+        caption: 'Heavy-gauge 22K gold kada for men with chased imperial terminals.'
+      }
+    ],
+    baseNetWeight: 38.5,
+    grossWeight: 38.5,
+    stoneWeight: 'Pure 22K Gold without stones',
+    stonePrice: 0,
+    makingPercent: 12.0,
+    purityOptions: ['22KT', '18KT'],
+    sizes: [
+      { label: '2.8 (63.5 mm Standard)', weightMult: 1.0 },
+      { label: '2.10 (66.7 mm)', weightMult: 1.08 }
+    ],
+    craftsmanship: 'Solid Core Cold Forging, Imperial Chiselled Finials',
+    hallmark: '100% BIS 916 Hallmark · Unique HUID Traceable'
+  },
+  {
+    id: 'mens-signet-ring',
+    ref: 'VM-MN-11',
+    name: 'Sovereign Chased Gold Signet Ring',
+    category: 'Gemstones',
+    collection: 'Everyday Gold',
+    audience: ['Men'],
+    occasions: ['Everyday', 'Gifting'],
+    jewelleryType: 'Rings',
+    image: 'bangle_angle_3_engraving.webp',
+    alt: 'Sovereign 22KT gold signet ring with hand-chased borders',
+    tagline: 'Solid 22KT gold signet ring with hand-chased borders and satin matte finish.',
+    description: 'Forged with high structural integrity for everyday wear, this solid 22KT gold signet ring combines hand-chased borders with a refined brushed crown.',
+    angles: [
+      {
+        file: 'bangle_angle_3_engraving.webp',
+        label: 'Angle 1: Chased Signet Crown',
+        caption: 'Hand-chased border relief and brushed satin matte top.'
+      }
+    ],
+    baseNetWeight: 12.4,
+    grossWeight: 12.4,
+    stoneWeight: 'Solid 22K Gold without stones',
+    stonePrice: 0,
+    makingPercent: 13.0,
+    purityOptions: ['22KT', '18KT'],
+    sizes: [
+      { label: 'Size 18 (18.5 mm)', weightMult: 0.95 },
+      { label: 'Size 20 (19.2 mm - Standard)', weightMult: 1.0 },
+      { label: 'Size 22 (19.8 mm)', weightMult: 1.06 }
+    ],
+    craftsmanship: 'Lost-Wax Casting, Hand-Relief Chiselling, Satin Finish',
+    hallmark: '100% BIS 916 Hallmark · Unique HUID Traceable'
+  },
+  {
+    id: 'mens-gold-chain',
+    ref: 'VM-MN-12',
+    name: 'Classic Royal Curb Link Chain',
+    category: 'Necklaces',
+    collection: 'Everyday Gold',
+    audience: ['Men'],
+    occasions: ['Traditional', 'Diwali', 'Gifting'],
+    jewelleryType: 'Necklaces',
+    image: '1599643478518-a784e5dc4c8f.webp',
+    alt: 'Traditional 22KT gold heavy curb link chain for men',
+    tagline: 'Substantial hand-soldered curb link gold chain with traditional S-hook clasp.',
+    description: 'A traditional heavy-gauge curb link chain forged in hallmark 22KT gold, designed with masculine symmetry and lifetime durability.',
+    angles: [
+      {
+        file: '1599643478518-a784e5dc4c8f.webp',
+        label: 'Angle 1: Solid Link Weave',
+        caption: 'Hand-soldered 22K curb links with reinforced traditional S-hook.'
+      }
+    ],
+    baseNetWeight: 46.0,
+    grossWeight: 46.0,
+    stoneWeight: 'Solid 22K Gold without stones',
+    stonePrice: 0,
+    makingPercent: 11.5,
+    purityOptions: ['22KT', '18KT'],
+    sizes: [
+      { label: '20\" Standard Chest Length', weightMult: 0.92 },
+      { label: '22\" Classic Hang', weightMult: 1.0 },
+      { label: '24\" Substantial Matinee', weightMult: 1.09 }
+    ],
+    craftsmanship: 'Hand-Assembled Curb Links, Diamond-Cut Chamfering',
+    hallmark: '100% BIS 916 Hallmark · Unique HUID Traceable'
+  },
+  {
+    id: 'kids-nazariya-bracelet',
+    ref: 'VM-KD-13',
+    name: 'Bal Gopal Nazariya Gold Bracelet',
+    category: 'Everyday',
+    collection: 'Everyday Gold',
+    audience: ['Kids'],
+    occasions: ['Gifting', 'Traditional', 'Everyday'],
+    jewelleryType: 'Bracelets',
+    image: 'category_kids.webp',
+    alt: 'Auspicious protective nazariya bracelet with 22K gold beads and black beads',
+    tagline: 'Handcrafted 22KT gold beads with auspicious protective black beads.',
+    description: 'Designed with gentle, rounded contours and hypoallergenic smooth safety closures for infant and toddler wrists. Strung with traditional protective black beads and 22KT pure gold spheres.',
+    angles: [
+      {
+        file: 'category_kids.webp',
+        label: 'Angle 1: Baby Wrist Presentation',
+        caption: 'Smooth 22K gold beads alternating with auspicious black beads.'
+      }
+    ],
+    baseNetWeight: 6.2,
+    grossWeight: 6.8,
+    stoneWeight: '0.6 cts (Auspicious black glass beads)',
+    stonePrice: 1500,
+    makingPercent: 14.0,
+    purityOptions: ['22KT', '18KT'],
+    sizes: [
+      { label: '4.5\" Infant Fit (0-1 yr)', weightMult: 0.88 },
+      { label: '5.2\" Toddler Fit (1-3 yrs)', weightMult: 1.0 },
+      { label: '6.0\" Child Fit (3-6 yrs)', weightMult: 1.12 }
+    ],
+    craftsmanship: 'Hand-Strung Silk Core, Rounded Soft Clasp, Hypoallergenic',
+    hallmark: '100% BIS 916 Hallmark · Unique HUID Traceable'
+  },
+  {
+    id: 'kids-peacock-pendant',
+    ref: 'VM-KD-14',
+    name: 'Auspicious Mayur Baby Gold Pendant',
+    category: 'Necklaces',
+    collection: 'Everyday Gold',
+    audience: ['Kids'],
+    occasions: ['Gifting', 'Summer', 'Traditional'],
+    jewelleryType: 'Pendants',
+    image: '1599643477877-530eb83abc8e.webp',
+    alt: 'Petite 22KT gold peacock baby pendant on lightweight chain',
+    tagline: 'Petite 22KT gold pendant with softened edges and auspicious blessing.',
+    description: 'A charming naming ceremony gift featuring an auspicious Mayur (peacock) motif in 22KT yellow gold. Meticulously hand-polished with no sharp edges.',
+    angles: [
+      {
+        file: '1599643477877-530eb83abc8e.webp',
+        label: 'Angle 1: Pendant Detail',
+        caption: 'Smooth 22K gold baby pendant with delicate circular drop.'
+      }
+    ],
+    baseNetWeight: 4.5,
+    grossWeight: 4.5,
+    stoneWeight: 'Pure 22K Gold without stones',
+    stonePrice: 0,
+    makingPercent: 15.0,
+    purityOptions: ['22KT', '18KT'],
+    sizes: [
+      { label: '14\" Baby Chain Length', weightMult: 1.0 },
+      { label: 'Pendant Only (No Chain)', weightMult: 0.65 }
+    ],
+    craftsmanship: 'Smooth Edge Relief, Laser Engraved Motif',
+    hallmark: '100% BIS 916 Hallmark · Unique HUID Traceable'
+  },
+  {
+    id: 'kids-ghungroo-bangles',
+    ref: 'VM-KD-15',
+    name: 'Pure Gold Bala & Ghungroo Bangles',
+    category: 'Everyday',
+    collection: 'Peshwai Toda',
+    audience: ['Kids'],
+    occasions: ['Traditional', 'Diwali', 'Gifting'],
+    jewelleryType: 'Bangles',
+    image: 'bangle_angle_1_pair.webp',
+    alt: 'Pair of smooth expanding 22KT gold baby bangles with soft ghungroo bells',
+    tagline: 'Smooth adjustable baby bangles with soft traditional bell charms.',
+    description: 'Crafted in soft, rounded 22KT gold with an expanding profile that adjusts gently as the child grows. Accented with subtle musical ghungroo bells celebrating early footsteps.',
+    angles: [
+      {
+        file: 'bangle_angle_1_pair.webp',
+        label: 'Angle 1: Expanding Smooth Profile',
+        caption: 'Adjustable expanding baby gold bangles with safety stops.'
+      }
+    ],
+    baseNetWeight: 14.8,
+    grossWeight: 14.8,
+    stoneWeight: 'Pure 22K Gold without stones',
+    stonePrice: 0,
+    makingPercent: 13.5,
+    purityOptions: ['22KT', '18KT'],
+    sizes: [
+      { label: '1.8 (Infant Expanding 40-48mm)', weightMult: 0.9 },
+      { label: '2.0 (Toddler Expanding 48-54mm)', weightMult: 1.0 }
+    ],
+    craftsmanship: 'Seamless Hollow Tube Bending, Polished Safety Bells',
+    hallmark: '100% BIS 916 Hallmark · Unique HUID Traceable'
   }
 ];
 
@@ -365,7 +604,12 @@ try {
   saved = [];
 }
 
-let filter = 'All';
+// Multidimensional Filter State
+let audienceFilter = 'All'; // 'All', 'Women', 'Men', 'Kids'
+let occasionFilter = 'All'; // 'All', 'Bridal', 'Everyday', 'Diwali', 'Summer', 'Traditional', 'Gifting', 'Temple', 'Gemstone'
+let typeFilter = 'All';     // 'All', 'Necklaces', 'Bangles', 'Earrings', 'Rings', 'Mangalsutras', 'Pendants', 'Bracelets'
+let purityFilter = 'All';   // 'All', '22KT', '18KT'
+let filter = 'All';         // Legacy fallback
 let repoFilter = 'All';
 let query = '';
 let sort = 'curated';
@@ -1106,10 +1350,200 @@ function chapter4AtelierShowroom() {
   `;
 }
 
+// ==========================================================================
+// 1B. SHOP BY WHO: JEWELLERY FOR EVERY GENERATION
+// ==========================================================================
+function shopByGenerationSection() {
+  const generations = [
+    {
+      audience: 'Women',
+      tag: 'FOR HER',
+      title: "Women's Jewellery",
+      subtitle: 'Timeless Elegance',
+      description: 'Chased temple suites, heirloom toda bangles, and sacred mangalsutras crafted for lifelong devotion.',
+      cta: "Explore Women's Jewellery",
+      image: 'category_women.webp',
+      alt: "Woman wearing royal Maharashtrian gold temple necklace, jhumkis, and bridal nath"
+    },
+    {
+      audience: 'Men',
+      tag: 'FOR HIM',
+      title: "Men's Jewellery",
+      subtitle: 'Tradition in Every Detail',
+      description: 'Solid 22KT gold kadas, sovereign signet rings, and classic curb chains forged with regal poise.',
+      cta: "Explore Men's Jewellery",
+      image: 'category_men.webp',
+      alt: "Distinguished man wearing solid 22KT gold kada bracelet in traditional attire"
+    },
+    {
+      audience: 'Kids',
+      tag: 'LITTLE TREASURES',
+      title: "Children's Jewellery",
+      subtitle: 'Cherished Beginnings',
+      description: 'Gentle 22KT protective nazariyas, sweet baby ghungroo bangles, and auspicious naming ceremony pendants.',
+      cta: "Explore Kids' Jewellery",
+      image: 'category_kids.webp',
+      alt: "Smiling young girl wearing auspicious 22KT gold pendant and protective nazariya"
+    }
+  ];
+
+  return `
+    <section class="section generation-section" id="shop-by-who">
+      <div class="section-inner">
+        <div class="section-header-centered">
+          <p class="eyebrow" style="justify-content: center;">SHOP BY AUDIENCE</p>
+          <h2 class="section-heading-editorial">Jewellery for Every Generation</h2>
+          <div class="gold-divider-centered"></div>
+          <p class="section-sub-editorial">
+            Timeless pieces for every story, every celebration, and everyone you hold dear.
+          </p>
+        </div>
+
+        <div class="generation-grid">
+          ${generations.map(g => `
+            <a class="generation-card" href="#/collections?audience=${g.audience}" aria-label="${g.title} — ${g.subtitle}">
+              <div class="generation-img-container">
+                <img 
+                  src="${ASSET_DIR + g.image}" 
+                  alt="${esc(g.alt)}" 
+                  class="generation-img" 
+                >
+                <div class="generation-scrim"></div>
+                <div class="generation-badge-top">${g.tag}</div>
+              </div>
+              <div class="generation-content">
+                <span class="generation-subtitle">${g.subtitle}</span>
+                <h3 class="generation-title">${g.title}</h3>
+                <p class="generation-desc">${g.description}</p>
+                <div class="generation-cta">
+                  <span>${g.cta}</span>
+                  <span class="cta-arrow" aria-hidden="true">↗</span>
+                </div>
+              </div>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+// ==========================================================================
+// 1C. SHOP BY OCCASION: FOR EVERY MOMENT THAT MATTERS
+// ==========================================================================
+function shopByOccasionSection() {
+  const occasions = [
+    {
+      key: 'Bridal',
+      title: 'Bridal Collection',
+      tag: 'WEDDING',
+      subtitle: 'Grand Peshwai suites & sacred wedding adornments',
+      image: 'bridal.webp',
+      alt: 'Grand 22KT gold Maharashtrian bridal necklace and earrings set in presentation case'
+    },
+    {
+      key: 'Everyday',
+      title: 'Everyday Wear',
+      tag: 'DAILY GOLD',
+      subtitle: 'Effortless lightweight gold for daily grace',
+      image: '1617038260897-41a1f14a8ca0.webp',
+      alt: 'Sculptural twisted 22KT gold hoop earrings on ivory stone'
+    },
+    {
+      key: 'Diwali',
+      title: 'Diwali Special',
+      tag: 'FESTIVE',
+      subtitle: 'Auspicious festive gold & Dhanteras blessings',
+      image: 'suite_angle_2_pendant.webp',
+      alt: 'Handcrafted 22KT gold temple choker suite on emerald velvet with basra pearls'
+    },
+    {
+      key: 'Summer',
+      title: 'Summer Edit',
+      tag: 'LIGHTWEIGHT',
+      subtitle: 'Breezy silhouettes & contemporary chains',
+      image: '1599643478518-a784e5dc4c8f.webp',
+      alt: 'Layered gold necklaces with Chandrakor crescent and geometric pendants'
+    },
+    {
+      key: 'Traditional',
+      title: 'Traditional Classics',
+      tag: 'HERITAGE',
+      subtitle: 'Ancestral Maharashtrian heritage & antique geru',
+      image: 'bangle_angle_1_pair.webp',
+      alt: 'Heirloom 22KT gold Peshwai Toda bangles with chased terminals'
+    },
+    {
+      key: 'Gifting',
+      title: 'Gifting & Milestones',
+      tag: 'CELEBRATION',
+      subtitle: 'Cherished treasures for birthdays & anniversaries',
+      image: '1605100804763-247f67b3557e.webp',
+      alt: 'Classic solitaire halo ring in presentation setting'
+    },
+    {
+      key: 'Temple',
+      title: 'Temple Jewellery',
+      tag: 'DEVOTIONAL',
+      subtitle: 'Devotional repoussé deities & basra pearls',
+      image: 'hero_emerald_jewellery.webp',
+      alt: 'Intricate 22KT gold temple choker suite with Lakshmi repoussé'
+    },
+    {
+      key: 'Gemstone',
+      title: 'Gemstone Jewellery',
+      tag: 'COLOUR STONES',
+      subtitle: 'Vibrant natural emeralds, rubies & sapphires',
+      image: '1599643477877-530eb83abc8e.webp',
+      alt: 'Natural emerald-cut green gemstone on delicate 18K gold chain'
+    }
+  ];
+
+  return `
+    <section class="section occasions-section" id="shop-by-occasion">
+      <div class="section-inner">
+        <div class="section-header-centered">
+          <p class="eyebrow" style="justify-content: center;">CURATED MOMENTS</p>
+          <h2 class="section-heading-editorial">For Every Moment That Matters</h2>
+          <div class="gold-divider-centered"></div>
+          <p class="section-sub-editorial">
+            Discover jewellery curated for life’s special occasions and everyday moments.
+          </p>
+        </div>
+
+        <div class="occasions-grid">
+          ${occasions.map(o => `
+            <a class="occasion-card" href="#/collections?occasion=${o.key}" aria-label="${o.title} — ${o.subtitle}">
+              <div class="occasion-img-wrap">
+                <img 
+                  src="${ASSET_DIR + o.image}" 
+                  alt="${esc(o.alt)}" 
+                  class="occasion-img" 
+                >
+                <span class="occasion-badge">${o.tag}</span>
+              </div>
+              <div class="occasion-info">
+                <h4 class="occasion-title">${o.title}</h4>
+                <p class="occasion-subtitle">${o.subtitle}</p>
+                <span class="occasion-link-text">
+                  <span>Explore Collection</span>
+                  <span class="link-arrow" aria-hidden="true">→</span>
+                </span>
+              </div>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 // Homepage Composite
 function home() {
   return `
     ${heroSection()}
+    ${shopByGenerationSection()}
+    ${shopByOccasionSection()}
     ${chapter1CuratedRepository()}
     ${showcaseSection()}
     ${chapter2HeritageStory()}
@@ -1119,51 +1553,184 @@ function home() {
   `;
 }
 
-// Catalogue / Collections View
+// Helper to generate active filter chips
+function renderActiveFilterChips(isSaved) {
+  if (isSaved) return '';
+  const chips = [];
+  if (audienceFilter !== 'All') {
+    chips.push({ label: `Audience: ${audienceFilter}`, key: 'audience' });
+  }
+  if (occasionFilter !== 'All') {
+    chips.push({ label: `Occasion: ${occasionFilter}`, key: 'occasion' });
+  }
+  if (typeFilter !== 'All') {
+    chips.push({ label: `Type: ${typeFilter}`, key: 'type' });
+  }
+  if (purityFilter !== 'All') {
+    chips.push({ label: `Purity: ${purityFilter}`, key: 'purity' });
+  }
+  if (query) {
+    chips.push({ label: `Search: "${query}"`, key: 'query' });
+  }
+
+  if (chips.length === 0) return '';
+
+  return `
+    <div class="active-chips-strip">
+      <span class="chips-label">Active Filters:</span>
+      ${chips.map(c => `
+        <button class="filter-chip" data-remove-filter="${c.key}" aria-label="Remove ${c.label}">
+          <span>${c.label}</span>
+          <span class="chip-remove" aria-hidden="true">✕</span>
+        </button>
+      `).join('')}
+      <button class="filter-chip-reset" data-reset-all-filters aria-label="Clear all active filters">
+        Clear All Filters
+      </button>
+    </div>
+  `;
+}
+
+// Catalogue / Collections View with Multi-faceted Refinement
 function catalogue(isSaved = false) {
+  const audienceTabs = [
+    { key: 'All', label: 'All Generations' },
+    { key: 'Women', label: "Women’s Fine Jewellery" },
+    { key: 'Men', label: "Men’s Jewellery" },
+    { key: 'Kids', label: "Children’s Treasures" }
+  ];
+
+  const occasionsList = [
+    'All', 'Bridal', 'Everyday', 'Diwali', 'Summer', 'Traditional', 'Gifting', 'Temple', 'Gemstone'
+  ];
+
+  const typesList = [
+    'All', 'Necklaces', 'Bangles', 'Earrings', 'Rings', 'Mangalsutras', 'Pendants', 'Bracelets'
+  ];
+
+  // Dynamic heading & lead based on filters
+  let pageEyebrow = 'JEWELLERY COLLECTIONS';
+  let pageHeading = 'Explore Collections';
+  let pageSub = 'Browse illustrative jewellery designs across necklaces, mangalsutras, gemstone jewellery, and everyday gold. Specifications, weight, and pricing are confirmed at our Vile Parle showroom.';
+
+  if (isSaved) {
+    pageEyebrow = 'SAVED SELECTION';
+    pageHeading = 'Your Saved Pieces';
+    pageSub = 'Pieces you have saved during this browsing session. Review them here, inspect 4 angles and live estimates, or prepare an enquiry for your showroom visit.';
+  } else if (audienceFilter === 'Women') {
+    pageEyebrow = 'FOR HER · FINE JEWELLERY';
+    pageHeading = "Women's Fine Jewellery";
+    pageSub = 'Chased temple suites, heirloom toda bangles, auspicious Kolhapuri Saaj mangalsutras, and everyday lightweight gold.';
+  } else if (audienceFilter === 'Men') {
+    pageEyebrow = 'FOR HIM · HERITAGE & MODERN';
+    pageHeading = "Men's Fine Jewellery";
+    pageSub = 'Distinguished solid 22KT gold kadas, sovereign signet rings, and classic curb chains forged with regal poise.';
+  } else if (audienceFilter === 'Kids') {
+    pageEyebrow = 'LITTLE TREASURES · FIRST HEIRLOOMS';
+    pageHeading = "Children's Jewellery";
+    pageSub = 'Gentle 22KT protective nazariya bracelets, sweet baby ghungroo bangles, and auspicious naming ceremony pendants.';
+  } else if (occasionFilter !== 'All') {
+    pageEyebrow = `OCCASION · ${occasionFilter.toUpperCase()}`;
+    pageHeading = `${occasionFilter} Jewellery Collection`;
+    pageSub = `Curated fine gold and gemstone pieces designed for ${occasionFilter} celebrations and cherished memories.`;
+  }
+
   return `
     <section class="page-top">
-      <p class="eyebrow">${isSaved ? 'SAVED SELECTION' : 'JEWELLERY COLLECTIONS'}</p>
-      <h1>${isSaved ? 'Your Saved Pieces' : 'Explore Collections'}</h1>
-      <p class="page-top-lead">
-        ${isSaved
-          ? 'Pieces you have saved during this browsing session. You can review them here, inspect 4 angles and live estimates, or prepare an enquiry for your showroom visit.'
-          : 'Browse illustrative jewellery designs across necklaces, mangalsutras, gemstone jewellery, and everyday gold. Specifications, weight, and pricing are confirmed at our Vile Parle showroom.'}
-      </p>
+      <p class="eyebrow">${pageEyebrow}</p>
+      <h1>${pageHeading}</h1>
+      <p class="page-top-lead">${pageSub}</p>
     </section>
 
     <section class="section" style="padding-top: 0;">
       <div class="section-inner">
         ${!isSaved ? `
-          <div class="toolbar">
-            <div class="filters" role="group" aria-label="Filter by jewellery category">
-              ${['All', 'Necklaces', 'Mangalsutras', 'Gemstones', 'Everyday'].map(cat => `
-                <button class="filter ${cat === filter ? 'active' : ''}" data-filter="${cat}" aria-pressed="${cat === filter}">
-                  ${cat}
+          <!-- Audience Segment Tab Bar -->
+          <div class="audience-tabs-container">
+            <div class="audience-tabs-bar" role="tablist" aria-label="Browse by Generation">
+              ${audienceTabs.map(t => `
+                <button 
+                  class="audience-tab ${audienceFilter === t.key ? 'active' : ''}" 
+                  data-audience="${t.key}" 
+                  role="tab" 
+                  aria-selected="${audienceFilter === t.key}"
+                >
+                  ${t.label}
                 </button>
               `).join('')}
             </div>
+          </div>
 
+          <!-- Multi-Faceted Toolbar -->
+          <div class="facet-toolbar">
+            <div class="facet-dropdowns-row">
+              <!-- Occasion Select -->
+              <div class="facet-group">
+                <label for="facet-occasion" class="facet-label">Occasion</label>
+                <select id="facet-occasion" class="facet-select" aria-label="Filter by occasion">
+                  <option value="All" ${occasionFilter === 'All' ? 'selected' : ''}>All Occasions</option>
+                  ${occasionsList.filter(o => o !== 'All').map(o => `
+                    <option value="${o}" ${occasionFilter === o ? 'selected' : ''}>${o} Collection</option>
+                  `).join('')}
+                </select>
+              </div>
+
+              <!-- Jewellery Type Select -->
+              <div class="facet-group">
+                <label for="facet-type" class="facet-label">Jewellery Type</label>
+                <select id="facet-type" class="facet-select" aria-label="Filter by jewellery type">
+                  <option value="All" ${typeFilter === 'All' ? 'selected' : ''}>All Types</option>
+                  ${typesList.filter(t => t !== 'All').map(t => `
+                    <option value="${t}" ${typeFilter === t ? 'selected' : ''}>${t}</option>
+                  `).join('')}
+                </select>
+              </div>
+
+              <!-- Gold Purity Select -->
+              <div class="facet-group">
+                <label for="facet-purity" class="facet-label">Gold Purity</label>
+                <select id="facet-purity" class="facet-select" aria-label="Filter by gold purity">
+                  <option value="All" ${purityFilter === 'All' ? 'selected' : ''}>All Purities</option>
+                  <option value="22KT" ${purityFilter === '22KT' ? 'selected' : ''}>22KT Yellow Gold (916)</option>
+                  <option value="18KT" ${purityFilter === '18KT' ? 'selected' : ''}>18KT Fine Gold (750)</option>
+                </select>
+              </div>
+
+              <!-- Sort Order Select -->
+              <div class="facet-group">
+                <label for="facet-sort" class="facet-label">Sort By</label>
+                <select id="facet-sort" class="facet-select" aria-label="Sort jewellery pieces">
+                  <option value="curated" ${sort === 'curated' ? 'selected' : ''}>Curated Selection</option>
+                  <option value="az" ${sort === 'az' ? 'selected' : ''}>Name: A to Z</option>
+                  <option value="za" ${sort === 'za' ? 'selected' : ''}>Name: Z to A</option>
+                  <option value="weight-asc" ${sort === 'weight-asc' ? 'selected' : ''}>Weight: Low to High</option>
+                  <option value="weight-desc" ${sort === 'weight-desc' ? 'selected' : ''}>Weight: High to Low</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Integrated Search Box -->
             <div class="search-box">
               <span aria-hidden="true" style="color: var(--gold-600);">⌕</span>
-              <input type="search" aria-label="Search jewellery pieces" placeholder="Search by name, ref or category..." value="${esc(query)}">
+              <input 
+                type="search" 
+                aria-label="Search jewellery pieces" 
+                placeholder="Search by name, ref or motif..." 
+                value="${esc(query)}"
+              >
               ${query ? '<button id="clear-search-btn" style="color: var(--ink-400); font-size: 13px;" aria-label="Clear search">✕</button>' : ''}
             </div>
+          </div>
+
+          <!-- Active Filter Chips Bar -->
+          <div id="active-chips-container">
+            ${renderActiveFilterChips(isSaved)}
           </div>
         ` : ''}
 
         <div class="result-line">
           <span id="result-count" role="status" aria-live="polite"></span>
-          ${!isSaved ? `
-            <label>
-              Sort:
-              <select aria-label="Sort jewellery pieces" id="sort-select">
-                <option value="curated" ${sort === 'curated' ? 'selected' : ''}>Curated</option>
-                <option value="az" ${sort === 'az' ? 'selected' : ''}>Name: A to Z</option>
-                <option value="za" ${sort === 'za' ? 'selected' : ''}>Name: Z to A</option>
-              </select>
-            </label>
-          ` : `
+          ${isSaved ? `
             <div style="display: flex; gap: 14px; align-items: center;">
               <button class="button button-primary" id="export-saved-whatsapp" style="padding: 7px 16px; min-height: 38px; font-size: 0.6875rem;">
                 <span>Enquire About Saved Pieces</span>
@@ -1172,7 +1739,7 @@ function catalogue(isSaved = false) {
                 Clear Selection
               </button>
             </div>
-          `}
+          ` : ''}
         </div>
 
         <div class="products" id="product-grid"></div>
@@ -1185,22 +1752,49 @@ function catalogue(isSaved = false) {
   `;
 }
 
-// Dynamic Grid Updater
+// Dynamic Grid Updater with Multi-faceted Filtering & Sorting
 function updateGrid() {
   const isSaved = location.hash.startsWith('#/saved');
   const countEl = document.querySelector('#result-count');
   const gridEl = document.querySelector('#product-grid');
+  const chipsEl = document.querySelector('#active-chips-container');
+  if (chipsEl) {
+    chipsEl.innerHTML = renderActiveFilterChips(isSaved);
+  }
   if (!gridEl) return;
 
   let shown = pieces.filter(p => {
     if (isSaved) return saved.includes(p.id);
-    const matchesFilter = filter === 'All' || p.category === filter;
-    const matchesQuery = `${p.name} ${p.category} ${p.ref} ${p.description}`.toLowerCase().includes(query.toLowerCase());
-    return matchesFilter && matchesQuery;
+
+    // 1. Audience facet
+    const matchesAudience = audienceFilter === 'All' || (p.audience && p.audience.includes(audienceFilter));
+
+    // 2. Occasion facet
+    const matchesOccasion = occasionFilter === 'All' || (p.occasions && p.occasions.includes(occasionFilter));
+
+    // 3. Jewellery Type facet
+    const matchesType = typeFilter === 'All' || p.jewelleryType === typeFilter || p.category === typeFilter;
+
+    // 4. Gold Purity facet
+    const matchesPurity = purityFilter === 'All' || (p.purityOptions && p.purityOptions.includes(purityFilter));
+
+    // 5. Search query
+    const searchTarget = `${p.name} ${p.category} ${p.ref} ${p.description} ${p.tagline} ${(p.occasions || []).join(' ')} ${(p.audience || []).join(' ')}`.toLowerCase();
+    const matchesQuery = !query || searchTarget.includes(query.toLowerCase());
+
+    return matchesAudience && matchesOccasion && matchesType && matchesPurity && matchesQuery;
   });
 
-  if (sort === 'az') shown.sort((a, b) => a.name.localeCompare(b.name));
-  else if (sort === 'za') shown.sort((a, b) => b.name.localeCompare(a.name));
+  // Sorting
+  if (sort === 'az') {
+    shown.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sort === 'za') {
+    shown.sort((a, b) => b.name.localeCompare(a.name));
+  } else if (sort === 'weight-asc') {
+    shown.sort((a, b) => (a.baseNetWeight || 0) - (b.baseNetWeight || 0));
+  } else if (sort === 'weight-desc') {
+    shown.sort((a, b) => (b.baseNetWeight || 0) - (a.baseNetWeight || 0));
+  }
 
   if (countEl) {
     countEl.textContent = `${shown.length} ${shown.length === 1 ? 'piece' : 'pieces'} ${isSaved ? 'saved' : 'available'}`;
@@ -1210,17 +1804,18 @@ function updateGrid() {
     ? shown.map(card).join('')
     : `
       <div class="empty">
-        <p class="eyebrow" style="justify-content: center;">${isSaved ? 'NO SAVED PIECES' : 'NO RESULTS'}</p>
-        <h2>${isSaved ? 'Your selection is currently empty.' : 'No matching pieces found.'}</h2>
+        <p class="eyebrow" style="justify-content: center;">${isSaved ? 'NO SAVED PIECES' : 'NO MATCHING PIECES'}</p>
+        <h2>${isSaved ? 'Your selection is currently empty.' : 'No pieces match your selected criteria.'}</h2>
         <p>
           ${isSaved
             ? 'Browse our collections and tap the heart icon on any piece to save it for your showroom visit.'
-            : 'Try adjusting your search terms or view our complete jewellery collection.'}
+            : 'Try adjusting your audience, occasion, or type filters to view other fine jewellery designs.'}
         </p>
-        ${isSaved ? '<a class="button button-primary" href="#/collections">Explore Collections ↗</a>' : '<button class="button button-primary" data-reset>View All Pieces ↗</button>'}
+        ${isSaved ? '<a class="button button-primary" href="#/collections">Explore Collections ↗</a>' : '<button class="button button-primary" data-reset-all-filters>View All Pieces ↗</button>'}
       </div>
     `;
 }
+
 
 // ==========================================================================
 // 8. UPGRADED INDIVIDUAL PRODUCT DETAIL EXPERIENCE (4-Angle Gallery & Calculator)
@@ -1864,13 +2459,50 @@ function render() {
   let pageTitle = 'VM Jewellers | V.M. Muslunkar & Sons — Vile Parle East';
 
   if (path === '/collections') {
-    filter = new URLSearchParams(qs).get('category') || 'All';
-    if (!['All', 'Necklaces', 'Mangalsutras', 'Gemstones', 'Everyday'].includes(filter)) {
-      filter = 'All';
+    const params = new URLSearchParams(qs || '');
+    
+    // Parse URL query parameters
+    const audParam = params.get('audience');
+    if (audParam && ['Women', 'Men', 'Kids', 'All'].includes(audParam)) {
+      audienceFilter = audParam;
+    } else {
+      audienceFilter = 'All';
     }
+
+    const occParam = params.get('occasion');
+    if (occParam && ['Bridal', 'Everyday', 'Diwali', 'Summer', 'Traditional', 'Gifting', 'Temple', 'Gemstone', 'All'].includes(occParam)) {
+      occasionFilter = occParam;
+    } else {
+      occasionFilter = 'All';
+    }
+
+    const typeParam = params.get('type') || params.get('category');
+    if (typeParam && ['Necklaces', 'Bangles', 'Earrings', 'Rings', 'Mangalsutras', 'Pendants', 'Bracelets', 'Everyday', 'Gemstones', 'All'].includes(typeParam)) {
+      typeFilter = typeParam;
+    } else {
+      typeFilter = 'All';
+    }
+
+    const purParam = params.get('purity');
+    if (purParam && ['22KT', '18KT', 'All'].includes(purParam)) {
+      purityFilter = purParam;
+    } else {
+      purityFilter = 'All';
+    }
+
     main.innerHTML = catalogue();
     updateGrid();
-    pageTitle = 'Collections';
+
+    // Contextual Page Title
+    if (audienceFilter !== 'All') {
+      pageTitle = `${audienceFilter}'s Fine Jewellery — Collections`;
+    } else if (occasionFilter !== 'All') {
+      pageTitle = `${occasionFilter} Jewellery Collection — Collections`;
+    } else if (typeFilter !== 'All') {
+      pageTitle = `${typeFilter} — Collections`;
+    } else {
+      pageTitle = 'Fine Jewellery Collections';
+    }
   } else if (path === '/saved') {
     main.innerHTML = catalogue(true);
     updateGrid();
@@ -1932,14 +2564,18 @@ function initScrollReveals() {
       }
     });
   }, {
-    rootMargin: '0px 0px -40px 0px',
-    threshold: 0.08
+    rootMargin: '0px 0px 80px 0px',
+    threshold: 0.05
   });
 
   const targets = document.querySelectorAll(
-    '.chapter-section, .showcase-section, .heritage-dark-section, .karigar-section, .customer-words-section, .showroom-invitation-section, .editorial-card, .showcase-card, .customer-review-card'
+    '.showcase-card, .customer-review-card'
   );
   targets.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 1.15) {
+      return; // In or near initial viewport; keep visible immediately
+    }
     el.classList.add('reveal-on-scroll');
     observer.observe(el);
   });
@@ -2108,8 +2744,79 @@ document.addEventListener('click', e => {
       b.classList.toggle('active', b.dataset.repofilter === repoFilter);
     });
     if (repoFilter !== 'All Masterpieces') {
-      location.hash = `#/collections?category=${repoFilter.includes('Mangal') ? 'Mangalsutras' : repoFilter.includes('Temple') ? 'Necklaces' : repoFilter.includes('Everyday') ? 'Everyday' : 'Gemstones'}`;
+      const targetType = repoFilter.includes('Mangal') ? 'Mangalsutras' : repoFilter.includes('Temple') ? 'Necklaces' : repoFilter.includes('Everyday') ? 'Bangles' : 'Gemstones';
+      location.hash = `#/collections?type=${targetType}`;
     }
+    return;
+  }
+
+  // Audience Segment Tab Click
+  const audienceBtn = e.target.closest('[data-audience]');
+  if (audienceBtn) {
+    audienceFilter = audienceBtn.dataset.audience;
+    document.querySelectorAll('[data-audience]').forEach(b => {
+      const active = b.dataset.audience === audienceFilter;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-selected', active);
+    });
+    syncFiltersToURL();
+    updateGrid();
+    return;
+  }
+
+  // Remove Filter Chip Click
+  const removeChipBtn = e.target.closest('[data-remove-filter]');
+  if (removeChipBtn) {
+    const key = removeChipBtn.dataset.removeFilter;
+    if (key === 'audience') {
+      audienceFilter = 'All';
+      document.querySelectorAll('[data-audience]').forEach(b => b.classList.toggle('active', b.dataset.audience === 'All'));
+    } else if (key === 'occasion') {
+      occasionFilter = 'All';
+      const el = document.querySelector('#facet-occasion');
+      if (el) el.value = 'All';
+    } else if (key === 'type') {
+      typeFilter = 'All';
+      const el = document.querySelector('#facet-type');
+      if (el) el.value = 'All';
+    } else if (key === 'purity') {
+      purityFilter = 'All';
+      const el = document.querySelector('#facet-purity');
+      if (el) el.value = 'All';
+    } else if (key === 'query') {
+      query = '';
+      const el = document.querySelector('.search-box input');
+      if (el) el.value = '';
+    }
+    syncFiltersToURL();
+    updateGrid();
+    return;
+  }
+
+  // Reset All Filters Click
+  if (e.target.closest('[data-reset-all-filters]')) {
+    audienceFilter = 'All';
+    occasionFilter = 'All';
+    typeFilter = 'All';
+    purityFilter = 'All';
+    query = '';
+    sort = 'curated';
+
+    document.querySelectorAll('[data-audience]').forEach(b => b.classList.toggle('active', b.dataset.audience === 'All'));
+    const occEl = document.querySelector('#facet-occasion');
+    if (occEl) occEl.value = 'All';
+    const typeEl = document.querySelector('#facet-type');
+    if (typeEl) typeEl.value = 'All';
+    const purEl = document.querySelector('#facet-purity');
+    if (purEl) purEl.value = 'All';
+    const sortEl = document.querySelector('#facet-sort');
+    if (sortEl) sortEl.value = 'curated';
+    const searchEl = document.querySelector('.search-box input');
+    if (searchEl) searchEl.value = '';
+
+    syncFiltersToURL();
+    updateGrid();
+    toast('All filters cleared');
     return;
   }
 
@@ -2266,7 +2973,19 @@ main.addEventListener('input', e => {
 });
 
 main.addEventListener('change', e => {
-  if (e.target.matches('#sort-select')) {
+  if (e.target.matches('#facet-occasion')) {
+    occasionFilter = e.target.value;
+    syncFiltersToURL();
+    updateGrid();
+  } else if (e.target.matches('#facet-type')) {
+    typeFilter = e.target.value;
+    syncFiltersToURL();
+    updateGrid();
+  } else if (e.target.matches('#facet-purity')) {
+    purityFilter = e.target.value;
+    syncFiltersToURL();
+    updateGrid();
+  } else if (e.target.matches('#facet-sort') || e.target.matches('#sort-select')) {
     sort = e.target.value;
     updateGrid();
   }

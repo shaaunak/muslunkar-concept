@@ -91,6 +91,11 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   margin: 0;
   background-color: var(--paper-100);
@@ -99,6 +104,8 @@ body {
   font-size: 0.9375rem;
   line-height: 1.65;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 body.lock {
@@ -2486,11 +2493,13 @@ header.scrolled {
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
-  transition: transform 0.35s var(--ease-out);
+  visibility: hidden;
+  transition: transform 0.35s var(--ease-out), visibility 0.35s;
 }
 
 .drawer.open {
   transform: translateX(0);
+  visibility: visible;
 }
 
 .drawer-head {
@@ -3069,5 +3078,546 @@ body > footer,
   .story-photo-wrap {
     height: 220px !important;
     max-height: 220px !important;
+  }
+}
+
+
+/* ==========================================================================
+   NEW EDITORIAL SECTIONS: SHOP BY WHO & SHOP BY OCCASION
+   ========================================================================== */
+
+/* Centered Editorial Section Header */
+.section-header-centered {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 52px auto;
+}
+.section-heading-editorial {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.6vw, 2.75rem);
+  font-weight: 400;
+  color: var(--green-950);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 10px 0 14px 0;
+}
+.section-sub-editorial {
+  font-size: 1rem;
+  color: var(--ink-600);
+  line-height: 1.6;
+  margin: 14px auto 0 auto;
+  max-width: 620px;
+}
+.gold-divider-centered {
+  width: 80px;
+  height: 1.5px;
+  background: var(--gold-divider);
+  margin: 16px auto;
+}
+
+/* 1. Shop by Who: Generation Section */
+.generation-section {
+  background: var(--paper-50);
+  padding: 96px 0 108px 0;
+  border-bottom: 1px solid var(--line);
+}
+.generation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.generation-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 620px;
+  text-decoration: none;
+  color: #fff;
+  background: var(--green-950);
+  border: 1px solid rgba(195, 161, 91, 0.25);
+  box-shadow: 0 12px 32px rgba(5, 26, 22, 0.1);
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), border-color 0.4s ease;
+}
+.generation-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 56px rgba(5, 26, 22, 0.26);
+  border-color: rgba(195, 161, 91, 0.7);
+}
+.generation-img-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--green-950);
+}
+.generation-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  transition: transform 0.9s var(--ease-out);
+}
+.generation-card:hover .generation-img {
+  transform: scale(1.05);
+}
+.generation-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, 
+    rgba(5, 26, 22, 0.0) 0%, 
+    rgba(5, 26, 22, 0.0) 60%, 
+    rgba(5, 26, 22, 0.65) 82%, 
+    rgba(5, 26, 22, 0.95) 100%
+  );
+  transition: opacity 0.4s ease;
+}
+.generation-card:hover .generation-scrim {
+  opacity: 0.92;
+}
+.generation-badge-top {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  background: rgba(5, 26, 22, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(195, 161, 91, 0.45);
+  color: var(--gold-300);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  z-index: 2;
+}
+.generation-content {
+  position: relative;
+  z-index: 2;
+  padding: 32px 28px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.generation-subtitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold-300);
+}
+.generation-title {
+  font-family: var(--serif);
+  font-size: 1.85rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.generation-desc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.45;
+  margin: 2px 0 6px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.generation-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold-300);
+  border-top: 1px solid rgba(195, 161, 91, 0.3);
+  padding-top: 14px;
+  margin-top: 4px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.generation-card:hover .generation-cta {
+  color: #ffffff;
+  border-color: var(--gold-500);
+}
+.generation-cta .cta-arrow {
+  display: inline-block;
+  transition: transform 0.3s var(--ease-out);
+}
+.generation-card:hover .cta-arrow {
+  transform: translate(3px, -3px);
+}
+
+/* 2. Shop by Occasion: Curated Moments Section */
+.occasions-section {
+  background: var(--paper-100);
+  padding: 96px 0 108px 0;
+  border-bottom: 1px solid var(--line);
+}
+.occasions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.occasion-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), border-color 0.3s ease;
+}
+.occasion-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(5, 26, 22, 0.1);
+  border-color: var(--gold-500);
+}
+.occasion-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--green-950);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.occasion-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: transform 0.7s var(--ease-out);
+}
+.occasion-card:hover .occasion-img {
+  transform: scale(1.08);
+}
+.occasion-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(5, 26, 22, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(195, 161, 91, 0.45);
+  color: var(--gold-300);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  z-index: 1;
+}
+.occasion-info {
+  padding: 20px 18px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: 8px;
+  background: #ffffff;
+}
+.occasion-title {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--green-950);
+  margin: 0;
+  line-height: 1.25;
+  transition: color 0.3s ease;
+}
+.occasion-card:hover .occasion-title {
+  color: var(--gold-700);
+}
+.occasion-subtitle {
+  font-size: 0.75rem;
+  color: var(--ink-600);
+  line-height: 1.45;
+  margin: 0;
+}
+.occasion-link-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold-700);
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--paper-200);
+  transition: color 0.3s ease;
+}
+.occasion-card:hover .occasion-link-text {
+  color: var(--green-950);
+}
+.occasion-link-text .link-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.occasion-card:hover .link-arrow {
+  transform: translateX(4px);
+}
+
+/* 3. Multi-Faceted Catalogue Refinement */
+.audience-tabs-container {
+  margin-bottom: 24px;
+}
+.audience-tabs-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 16px;
+}
+.audience-tab {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-800);
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.audience-tab:hover {
+  background: var(--paper-200);
+  border-color: var(--gold-600);
+  color: var(--green-950);
+}
+.audience-tab.active {
+  background: var(--green-950);
+  color: var(--gold-300);
+  border-color: var(--green-950);
+  box-shadow: 0 4px 14px rgba(5, 26, 22, 0.18);
+}
+
+.facet-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 18px;
+  margin-bottom: 20px;
+  padding: 22px 24px;
+  background: var(--paper-100);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.facet-dropdowns-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  flex-grow: 1;
+  align-items: flex-end;
+}
+.facet-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 150px;
+}
+.facet-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-600);
+}
+.facet-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #ffffff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23765a1b' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E") no-repeat calc(100% - 12px) center;
+  padding: 9px 34px 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  color: var(--green-950);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.facet-select:focus,
+.facet-select:hover {
+  border-color: var(--gold-500);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(195, 161, 91, 0.2);
+}
+
+.active-chips-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 22px;
+  padding: 12px 18px;
+  background: rgba(195, 161, 91, 0.08);
+  border: 1px dashed rgba(195, 161, 91, 0.4);
+  border-radius: 3px;
+}
+.chips-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold-700);
+  margin-right: 4px;
+}
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid var(--gold-border);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--green-950);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.filter-chip:hover {
+  background: #fee2e2;
+  border-color: #ef4444;
+  color: #991b1b;
+}
+.filter-chip .chip-remove {
+  font-size: 0.6875rem;
+  color: var(--ink-400);
+}
+.filter-chip:hover .chip-remove {
+  color: #991b1b;
+}
+.filter-chip-reset {
+  background: none;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #991b1b;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 8px;
+  padding: 4px 6px;
+}
+
+/* 4. Responsive Breakpoints for New Sections */
+@media (max-width: 1024px) {
+  .generation-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .generation-card {
+    height: 520px;
+  }
+  .occasions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .facet-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .facet-dropdowns-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .facet-group {
+    min-width: 0;
+  }
+  .search-box {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-header-centered {
+    margin-bottom: 36px;
+    padding: 0 12px;
+  }
+  .section-heading-editorial {
+    font-size: clamp(1.6rem, 5.5vw, 2.25rem);
+    word-break: break-word;
+  }
+  .section-sub-editorial {
+    font-size: 0.9rem;
+    padding: 0 8px;
+  }
+  .generation-section,
+  .occasions-section {
+    padding: 60px 4% 70px;
+  }
+  .generation-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .generation-card {
+    height: 480px;
+  }
+  .generation-content {
+    padding: 24px 20px 20px;
+  }
+  .generation-title {
+    font-size: 1.6rem;
+  }
+  .occasions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .occasion-info {
+    padding: 14px 12px;
+  }
+  .occasion-title {
+    font-size: 1.05rem;
+  }
+  .audience-tabs-bar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .audience-tabs-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .audience-tab {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-heading-editorial {
+    font-size: 1.45rem;
+    line-height: 1.25;
+  }
+  .generation-card {
+    height: 440px;
+  }
+  .occasions-grid {
+    grid-template-columns: 1fr;
+    max-width: 330px;
+    margin: 0 auto;
+  }
+  .facet-dropdowns-row {
+    grid-template-columns: 1fr;
   }
 }
